@@ -22,16 +22,29 @@ La pagina principal esta en `src/app/page.tsx` y los estilos globales en `src/ap
 
 ## MCP de Contentful
 
-Este repositorio incluye la configuracion de Cursor para conectar el servidor MCP remoto de Contentful:
+Este repositorio incluye la configuracion de Cursor para conectar Contentful de dos formas:
+
+- `contentful`: servidor MCP remoto oficial de Contentful.
+- `contentful-local`: servidor MCP local ejecutado con `npx @contentful/mcp-server`.
 
 ```json
 {
   "mcpServers": {
     "contentful": {
       "url": "https://mcp.contentful.com/mcp"
+    },
+    "contentful-local": {
+      "command": "npx",
+      "args": ["-y", "@contentful/mcp-server"],
+      "env": {
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "<<YOUR_CMA_PAT>>",
+        "SPACE_ID": "<<YOUR_SPACE_ID>>",
+        "ENVIRONMENT_ID": "master",
+        "CONTENTFUL_HOST": "api.contentful.com"
+      }
     }
   }
 }
 ```
 
-Si Cursor solicita autorizacion al usar el MCP, inicia sesion con la cuenta de Contentful correspondiente.
+Si Cursor solicita autorizacion al usar el MCP remoto, inicia sesion con la cuenta de Contentful correspondiente. Para usar `contentful-local`, reemplaza `<<YOUR_CMA_PAT>>` y `<<YOUR_SPACE_ID>>` con tus valores locales antes de iniciar el servidor.

@@ -2,6 +2,19 @@
   "mcpServers": {
     "contentful": {
       "url": "https://mcp.contentful.com/mcp"
+    },
+    "contentful-local": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@contentful/mcp-server"
+      ],
+      "env": {
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "<<YOUR_CMA_PAT>>",
+        "SPACE_ID": "<<YOUR_SPACE_ID>>",
+        "ENVIRONMENT_ID": "master",
+        "CONTENTFUL_HOST": "api.contentful.com"
+      }
     }
   }
 }
