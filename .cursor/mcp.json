@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "contentful": {
+      "url": "https://mcp.contentful.com/mcp"
+    }
+  }
+}
