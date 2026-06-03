@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local MCP overrides with secrets
+.cursor/mcp.local.json
+.cursor/*local*.json
