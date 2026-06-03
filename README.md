@@ -37,8 +37,8 @@ Este repositorio incluye la configuracion de Cursor para conectar Contentful de 
       "command": "npx",
       "args": ["-y", "@contentful/mcp-server"],
       "env": {
-        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "<<YOUR_CMA_PAT>>",
-        "SPACE_ID": "<<YOUR_SPACE_ID>>",
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "${env:CONTENTFUL_MANAGEMENT_ACCESS_TOKEN}",
+        "SPACE_ID": "${env:CONTENTFUL_SPACE_ID}",
         "ENVIRONMENT_ID": "master",
         "CONTENTFUL_HOST": "api.contentful.com"
       }
@@ -47,4 +47,11 @@ Este repositorio incluye la configuracion de Cursor para conectar Contentful de 
 }
 ```
 
-Si Cursor solicita autorizacion al usar el MCP remoto, inicia sesion con la cuenta de Contentful correspondiente. Para usar `contentful-local`, reemplaza `<<YOUR_CMA_PAT>>` y `<<YOUR_SPACE_ID>>` con tus valores locales antes de iniciar el servidor.
+Si Cursor solicita autorizacion al usar el MCP remoto, inicia sesion con la cuenta de Contentful correspondiente. Para usar `contentful-local`, define estas variables de entorno en tu maquina antes de iniciar Cursor:
+
+```bash
+export CONTENTFUL_MANAGEMENT_ACCESS_TOKEN="tu_token_cma"
+export CONTENTFUL_SPACE_ID="tu_space_id"
+```
+
+No guardes el token real en archivos versionados.
