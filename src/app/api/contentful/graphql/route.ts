@@ -4,6 +4,26 @@ import {
   contentfulGraphQLFetch,
 } from "@/lib/contentful/graphql";
 
+
+const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID ?? "w4hosymzan98";
+const CONTENTFUL_ENVIRONMENT_ID = process.env.CONTENTFUL_ENVIRONMENT_ID ?? "master";
+
+export async function GET() {
+  const explorerUrl = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT_ID}/explore`;
+
+  return NextResponse.json({
+    message:
+      "This endpoint accepts POST requests with a GraphQL query in the request body.",
+    method: "POST",
+    endpoint: "/api/contentful/graphql",
+    example: {
+      query: "query { __typename }",
+    },
+    contentfulGraphQLExplorer: explorerUrl,
+    note: "Open the explorer URL and provide your Content Delivery API access token in Contentful's interface.",
+  });
+}
+
 type GraphQLRequestBody = {
   query?: string;
   variables?: Record<string, unknown>;

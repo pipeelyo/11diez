@@ -35,12 +35,20 @@ CONTENTFUL_GRAPHQL_HOST=graphql.contentful.com
 
 > Nota: `CONTENTFUL_GRAPHQL_ACCESS_TOKEN` debe ser un token de Content Delivery API o Preview API para leer contenido con GraphQL. El token de Content Management API usado por el MCP no sirve para el Content GraphQL API.
 
-Puedes probar la ruta local con una consulta de tu modelo de contenido:
+Puedes abrir `http://localhost:3000/api/contentful/graphql` en el navegador para ver instrucciones de uso. Esa URL no ejecuta consultas por si sola porque la ruta espera requests `POST`.
+
+Prueba la ruta local con una consulta de tu modelo de contenido:
 
 ```bash
 curl -X POST http://localhost:3000/api/contentful/graphql \
   -H "Content-Type: application/json" \
   -d '{"query":"query { __typename }"}'
+```
+
+Para explorar y construir queries visualmente, usa el GraphQL Explorer oficial de Contentful:
+
+```text
+https://graphql.contentful.com/content/v1/spaces/w4hosymzan98/environments/master/explore
 ```
 
 Para consultas preview, agrega `"preview": true` al body y define `CONTENTFUL_PREVIEW_ACCESS_TOKEN`.
