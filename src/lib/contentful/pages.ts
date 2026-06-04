@@ -96,3 +96,66 @@ export async function getContentfulPages({
 
   return data.pageCollection?.items?.filter((page): page is ContentfulPage => Boolean(page)) ?? [];
 }
+
+
+export const CONTENTFUL_PAGE_BY_SLUG_QUERY = /* GraphQL */ `
+  query GetPageBySlug($slug: String!, $blocksLimit: Int = 10) {
+    pageCollection(where: { slug: $slug }, limit: 1) {
+      items {
+        slug
+        title
+        content {
+          json
+          links {
+            assets {
+              block {
+                contentType
+              }
+              hyperlink {
+                contentType
+                url
+              }
+            }
+            entries {
+              block {
+                __typename
+              }
+            }
+          }
+        }
+        blocksCollection(limit: $blocksLimit) {
+          __typename
+          items {
+            _id
+            title
+            numberBlocks
+          }
+        }
+      }
+    }
+  }
+`;
+
+type GetContentfulPageBySlugOptions = {
+  slug: string;
+  blocksLimit?: number;
+  preview?: boolean;
+};
+
+export async function getContentfulPageBySlug({
+  slug,
+  blocksLimit = 10,
+  preview = false,
+}: GetContentfulPageBySlugOptions) {
+  const data = await contentfulGraphQLFetch<
+    ContentfulPagesResponse,
+    { slug: string; blocksLimit: number }
+  >({
+    query: CONTENTFUL_PAGE_BY_SLUG_QUERY,
+    variables: { slug, blocksLimit },
+    preview,
+    next: { revalidate: 60 },
+  });
+
+  return data.pageCollection?.items?.find(Boolean) ?? null;
+}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ContentfulGraphQLError } from "@/lib/contentful/graphql";
 import { getContentfulPages } from "@/lib/contentful/pages";
 import styles from "./page.module.css";
@@ -60,6 +61,11 @@ export default async function Home() {
                 <div>
                   <p className={styles.slug}>/{page.slug ?? "sin-slug"}</p>
                   <h3>{page.title ?? "Pagina sin titulo"}</h3>
+                  {page.slug ? (
+                    <Link className={styles.pageLink} href={`/${page.slug}`}>
+                      Ver pagina
+                    </Link>
+                  ) : null}
                 </div>
 
                 <dl className={styles.metaList}>

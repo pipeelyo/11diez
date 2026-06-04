@@ -102,6 +102,15 @@
   line-height: 1.2;
 }
 
+.pageLink {
+  display: inline-flex;
+  margin-top: 16px;
+  color: #93c5fd;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .slug {
   color: #93c5fd;
   font-family: var(--font-geist-mono);

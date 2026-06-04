@@ -53,7 +53,13 @@ https://graphql.contentful.com/content/v1/spaces/w4hosymzan98/environments/maste
 
 Para consultas preview, agrega `"preview": true` al body y define `CONTENTFUL_PREVIEW_ACCESS_TOKEN`.
 
-La pagina principal usa el query `pageCollection` para listar paginas y bloques. Tambien puedes consultar ese resultado como JSON en:
+La pagina principal usa el query `pageCollection` para listar paginas y bloques. Cada pagina se monta en la URL indicada por su `slug`; por ejemplo, el slug `principal` se renderiza en:
+
+```text
+http://localhost:3000/principal
+```
+
+Tambien puedes consultar ese resultado como JSON en:
 
 ```text
 http://localhost:3000/api/contentful/pages
