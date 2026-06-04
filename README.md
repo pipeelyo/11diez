@@ -53,6 +53,12 @@ https://graphql.contentful.com/content/v1/spaces/w4hosymzan98/environments/maste
 
 Para consultas preview, agrega `"preview": true` al body y define `CONTENTFUL_PREVIEW_ACCESS_TOKEN`.
 
+La pagina principal usa el query `pageCollection` para listar paginas y bloques. Tambien puedes consultar ese resultado como JSON en:
+
+```text
+http://localhost:3000/api/contentful/pages
+```
+
 ## MCP de Contentful
 
 Este repositorio incluye la configuracion de Cursor para conectar Contentful de dos formas:
