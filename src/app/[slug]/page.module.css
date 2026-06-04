@@ -1,0 +1,139 @@
+.page {
+  min-height: 100svh;
+  padding: 48px 24px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 32rem),
+    linear-gradient(135deg, #0f172a 0%, #111827 45%, #020617 100%);
+  color: #f8fafc;
+  font-family: var(--font-geist-sans);
+}
+
+.backLink {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 auto 24px;
+  color: #93c5fd;
+  font-weight: 700;
+}
+
+.article {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 64px);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 32px;
+  background: rgba(15, 23, 42, 0.78);
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.slug {
+  margin-bottom: 14px;
+  color: #93c5fd;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(42px, 8vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.richText {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #dbeafe;
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.75;
+}
+
+.richText h1,
+.richText h2,
+.richText h3,
+.richText h4,
+.richText h5,
+.richText h6 {
+  margin-top: 18px;
+  color: #f8fafc;
+  line-height: 1.15;
+}
+
+.richText p {
+  margin: 0;
+}
+
+.richText a {
+  color: #93c5fd;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.richText ul,
+.richText ol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 24px;
+}
+
+.richText blockquote {
+  margin: 6px 0;
+  padding-left: 18px;
+  border-left: 3px solid #60a5fa;
+  color: #bfdbfe;
+}
+
+.richText code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(2, 6, 23, 0.72);
+  color: #fde68a;
+}
+
+.richText aside {
+  padding: 14px 16px;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 16px;
+  background: rgba(30, 64, 175, 0.2);
+  color: #bfdbfe;
+}
+
+.blocks {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.blocks h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.blocks ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.blocks li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(30, 64, 175, 0.22);
+}
+
+.blocks small {
+  color: #bfdbfe;
+  font-family: var(--font-geist-mono);
+}

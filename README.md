@@ -19,3 +19,67 @@ npm run lint
 Abre [http://localhost:3000](http://localhost:3000) para ver la aplicacion en desarrollo.
 
 La pagina principal esta en `src/app/page.tsx` y los estilos globales en `src/app/globals.css`.
+
+## Contentful GraphQL
+
+Contentful es el backend de contenido. La app consume el GraphQL Content API directamente desde componentes server-side de Next.js usando `src/lib/contentful/graphql.ts`; no hay rutas API internas para este flujo.
+
+Configura estas variables en tu entorno local o en el proveedor de despliegue:
+
+```bash
+CONTENTFUL_GRAPHQL_ACCESS_TOKEN=tu_content_delivery_token
+CONTENTFUL_SPACE_ID=w4hosymzan98
+CONTENTFUL_ENVIRONMENT_ID=master
+CONTENTFUL_GRAPHQL_HOST=graphql.contentful.com
+```
+
+> Nota: `CONTENTFUL_GRAPHQL_ACCESS_TOKEN` debe ser un token de Content Delivery API o Preview API para leer contenido con GraphQL. El token de Content Management API usado por el MCP no sirve para el Content GraphQL API.
+
+Para explorar y construir queries visualmente, usa el GraphQL Explorer oficial de Contentful:
+
+```text
+https://graphql.contentful.com/content/v1/spaces/w4hosymzan98/environments/master/explore?access_token=TU_CONTENT_DELIVERY_TOKEN
+```
+
+La pagina principal usa el query `pageCollection` para listar paginas y bloques. Cada pagina se monta en la URL indicada por su `slug`; por ejemplo, el slug `principal` se renderiza en:
+
+```text
+http://localhost:3000/principal
+```
+
+Para consultas preview, agrega `preview: true` en los helpers de Contentful y define `CONTENTFUL_PREVIEW_ACCESS_TOKEN`.
+
+## MCP de Contentful
+
+Este repositorio incluye la configuracion de Cursor para conectar Contentful de dos formas:
+
+- `contentful`: servidor MCP remoto oficial de Contentful.
+- `contentful-local`: servidor MCP local ejecutado con `npx @contentful/mcp-server`.
+
+```json
+{
+  "mcpServers": {
+    "contentful": {
+      "url": "https://mcp.contentful.com/mcp"
+    },
+    "contentful-local": {
+      "command": "npx",
+      "args": ["-y", "@contentful/mcp-server"],
+      "env": {
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "${env:CONTENTFUL_MANAGEMENT_ACCESS_TOKEN}",
+        "SPACE_ID": "w4hosymzan98",
+        "ENVIRONMENT_ID": "master",
+        "CONTENTFUL_HOST": "api.contentful.com"
+      }
+    }
+  }
+}
+```
+
+Si Cursor solicita autorizacion al usar el MCP remoto, inicia sesion con la cuenta de Contentful correspondiente. Para usar `contentful-local`, define esta variable de entorno en tu maquina antes de iniciar Cursor:
+
+```bash
+export CONTENTFUL_MANAGEMENT_ACCESS_TOKEN="tu_token_cma"
+```
+
+No guardes el token real en archivos versionados.
